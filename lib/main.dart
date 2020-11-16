@@ -1,6 +1,7 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
+//import 'dart:io';
+
+import './transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +21,26 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final String title;
+  final List<Transaction> transactions = [
+    Transaction(
+      id: 't1',
+      title: 'SV - daily groceries',
+      amount: 17.57,
+      dateTime: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'New shoes',
+      amount: 69.99,
+      dateTime: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'LIDL - weekly groceries',
+      amount: 130.59,
+      dateTime: DateTime.now(),
+    ),
+  ];
 
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -36,6 +57,7 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
+        crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
