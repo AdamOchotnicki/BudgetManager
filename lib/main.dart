@@ -42,6 +42,8 @@ class MyHomePage extends StatefulWidget {
     ),
   ];
 
+  //double accountBalance = 567.34;
+
   MyHomePage({Key key, this.title}) : super(key: key);
 
   @override
@@ -74,9 +76,35 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-          Card(
-            color: Colors.red,
-            child: Text('List of transactions'),
+          Column(
+            children: widget.transactions.map((transaction) {
+              return Card(
+                child: Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.symmetric(
+                        vertical: 12,
+                        horizontal: 16,
+                      ),
+                      decoration: BoxDecoration(
+                        border: Border.all(
+                          color: Colors.black,
+                          width: 2,
+                        ),
+                      ),
+                      padding: EdgeInsets.all(10),
+                      child: Text(transaction.amount.toString()),
+                    ),
+                    Column(
+                      children: [
+                        Text(transaction.title),
+                        Text(transaction.dateTime.toString()),
+                      ],
+                    ),
+                  ],
+                ),
+              );
+            }).toList(),
           ),
         ],
       ),
