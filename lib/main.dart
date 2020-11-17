@@ -41,6 +41,8 @@ class MyHomePage extends StatefulWidget {
       dateTime: DateTime.now(),
     ),
   ];
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
 
   //double accountBalance = 567.34;
 
@@ -58,7 +60,7 @@ class _MyHomePageState extends State<MyHomePage> {
         title: Text(widget.title),
       ),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
+        // mainAxisAlignment: MainAxisAlignment.spaceAround,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Column(
@@ -75,6 +77,33 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text('CHART!'),
               ),
             ],
+          ),
+          Card(
+            elevation: 5,
+            child: Container(
+              padding: EdgeInsets.all(10),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.end,
+                children: [
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Title'),
+                    controller: widget.titleController,
+                  ),
+                  TextField(
+                    decoration: InputDecoration(labelText: 'Amount'),
+                    controller: widget.amountController,
+                  ),
+                  FlatButton(
+                    onPressed: () {
+                      print(widget.titleController.text);
+                      print(widget.amountController.text);
+                    },
+                    child: Text('Add Transaction'),
+                    textColor: Colors.purple,
+                  )
+                ],
+              ),
+            ),
           ),
           Column(
             children: widget.transactions.map((transaction) {
