@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 //import 'dart:io';
 
 import './transaction.dart';
@@ -117,17 +118,38 @@ class _MyHomePageState extends State<MyHomePage> {
                       ),
                       decoration: BoxDecoration(
                         border: Border.all(
-                          color: Colors.black,
+                          color: Colors.purple,
                           width: 2,
                         ),
                       ),
                       padding: EdgeInsets.all(10),
-                      child: Text(transaction.amount.toString()),
+                      child: Text(
+                        //transaction.amount.toString(),
+                        '€${transaction.amount}', // string interpolation
+                        style: TextStyle(
+                          fontWeight: FontWeight.bold,
+                          fontSize: 20,
+                          color: Colors.purple,
+                        ),
+                      ),
                     ),
                     Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(transaction.title),
-                        Text(transaction.dateTime.toString()),
+                        Text(
+                          transaction.title,
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16,
+                          ),
+                        ),
+                        Text(
+                          //transaction.dateTime.toString(),
+                          DateFormat.yMMMMd().format(transaction.dateTime),
+                          style: TextStyle(
+                            color: Colors.grey,
+                          ),
+                        ),
                       ],
                     ),
                   ],
