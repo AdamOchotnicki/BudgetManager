@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 //import 'dart:io';
 
-import './transaction.dart';
+import './widgets/user_transactions.dart';
 
 void main() => runApp(MyApp());
 
@@ -22,30 +21,6 @@ class MyApp extends StatelessWidget {
 
 class MyHomePage extends StatefulWidget {
   final String title;
-  final List<Transaction> transactions = [
-    Transaction(
-      id: 't1',
-      title: 'SV - daily groceries',
-      amount: 17.57,
-      dateTime: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'New shoes',
-      amount: 69.99,
-      dateTime: DateTime.now(),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'LIDL - weekly groceries',
-      amount: 130.59,
-      dateTime: DateTime.now(),
-    ),
-  ];
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
-
-  //double accountBalance = 567.34;
 
   MyHomePage({Key key, this.title}) : super(key: key);
 
@@ -54,6 +29,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  //double accountBalance = 567.34;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -79,84 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               ),
             ],
           ),
-          Card(
-            elevation: 5,
-            child: Container(
-              padding: EdgeInsets.all(10),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.end,
-                children: [
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Title'),
-                    controller: widget.titleController,
-                  ),
-                  TextField(
-                    decoration: InputDecoration(labelText: 'Amount'),
-                    controller: widget.amountController,
-                  ),
-                  FlatButton(
-                    onPressed: () {
-                      print(widget.titleController.text);
-                      print(widget.amountController.text);
-                    },
-                    child: Text('Add Transaction'),
-                    textColor: Colors.purple,
-                  )
-                ],
-              ),
-            ),
-          ),
-          Column(
-            children: widget.transactions.map((transaction) {
-              return Card(
-                child: Row(
-                  children: [
-                    Container(
-                      margin: EdgeInsets.symmetric(
-                        vertical: 12,
-                        horizontal: 16,
-                      ),
-                      decoration: BoxDecoration(
-                        border: Border.all(
-                          color: Colors.purple,
-                          width: 2,
-                        ),
-                      ),
-                      padding: EdgeInsets.all(10),
-                      child: Text(
-                        //transaction.amount.toString(),
-                        '€${transaction.amount}', // string interpolation
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 20,
-                          color: Colors.purple,
-                        ),
-                      ),
-                    ),
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(
-                          transaction.title,
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 16,
-                          ),
-                        ),
-                        Text(
-                          //transaction.dateTime.toString(),
-                          DateFormat.yMMMMd().format(transaction.dateTime),
-                          style: TextStyle(
-                            color: Colors.grey,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ],
-                ),
-              );
-            }).toList(),
-          ),
+          UserTransactions(),
         ],
       ),
     );
