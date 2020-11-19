@@ -29,7 +29,13 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  //double accountBalance = 567.34;
+  double _accountBalance = 567.34;
+
+  void _reduceBalance(double amount) {
+    setState(() {
+      _accountBalance -= amount;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -47,16 +53,22 @@ class _MyHomePageState extends State<MyHomePage> {
               Card(
                 elevation: 5,
                 color: Colors.red,
-                child: Text('ACCOUNT BALANCE!'),
+                child: Text(
+                  '€$_accountBalance',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 20,
+                  ),
+                ),
               ),
               Card(
                 elevation: 5,
                 color: Colors.blue,
-                child: Text('CHART!'),
+                child: Text('WEEKLY CHART!'),
               ),
             ],
           ),
-          UserTransactions(),
+          UserTransactions(_reduceBalance),
         ],
       ),
     );

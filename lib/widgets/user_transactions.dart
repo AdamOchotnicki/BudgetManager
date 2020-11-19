@@ -5,6 +5,11 @@ import './new_transaction.dart';
 import './transaction_list.dart';
 
 class UserTransactions extends StatefulWidget {
+  final Function _reduceMainBalance;
+  //final double _reduceAmount;
+
+  UserTransactions(this._reduceMainBalance);
+
   @override
   _UserTransactionsState createState() => _UserTransactionsState();
 }
@@ -31,6 +36,8 @@ class _UserTransactionsState extends State<UserTransactions> {
     ),
   ];
 
+  //_UserTransactionsState(this._reduceMainBalance);
+
   void _addNewTransaction(String transactionTitle, double transactionAmount) {
     final newTransaction = Transaction(
       id: DateTime.now().toString(),
@@ -41,6 +48,7 @@ class _UserTransactionsState extends State<UserTransactions> {
 
     setState(() {
       _userTransactions.add(newTransaction);
+      widget._reduceMainBalance(transactionAmount);
     });
   }
 
