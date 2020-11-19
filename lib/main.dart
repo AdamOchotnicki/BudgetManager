@@ -43,33 +43,34 @@ class _MyHomePageState extends State<MyHomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: Column(
-        // mainAxisAlignment: MainAxisAlignment.spaceAround,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        children: [
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              Card(
-                elevation: 5,
-                color: Colors.red,
-                child: Text(
-                  '€$_accountBalance',
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 20,
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.stretch,
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Card(
+                  elevation: 5,
+                  color: Colors.red,
+                  child: Text(
+                    '€$_accountBalance',
+                    style: TextStyle(
+                      fontWeight: FontWeight.bold,
+                      fontSize: 20,
+                    ),
                   ),
                 ),
-              ),
-              Card(
-                elevation: 5,
-                color: Colors.blue,
-                child: Text('WEEKLY CHART!'),
-              ),
-            ],
-          ),
-          UserTransactions(_reduceBalance),
-        ],
+                Card(
+                  elevation: 5,
+                  color: Colors.blue,
+                  child: Text('WEEKLY CHART!'),
+                ),
+              ],
+            ),
+            UserTransactions(_reduceBalance),
+          ],
+        ),
       ),
     );
   }
