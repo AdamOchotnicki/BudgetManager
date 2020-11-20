@@ -67,6 +67,15 @@ class _MyHomePageState extends State<MyHomePage> {
     });
   }
 
+  void _startAddingNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return NewTransaction(_addNewTransaction);
+      },
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -98,10 +107,15 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            NewTransaction(_addNewTransaction),
+            //NewTransaction(_addNewTransaction),
             TransactionList(_userTransactions),
           ],
         ),
+      ),
+      //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () => _startAddingNewTransaction(context),
       ),
     );
   }
