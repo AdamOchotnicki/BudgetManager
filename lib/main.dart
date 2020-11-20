@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 //import 'dart:io';
 
-import './widgets/user_transactions.dart';
+import './models/transaction.dart';
+import './widgets/transaction_list.dart';
+import './widgets/new_transaction.dart';
 
 void main() => runApp(MyApp());
 
@@ -30,10 +32,38 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   double _accountBalance = 567.34;
+  final List<Transaction> _userTransactions = [
+    Transaction(
+      id: 't1',
+      title: 'SV - daily groceries',
+      amount: 17.57,
+      dateTime: DateTime.now(),
+    ),
+    Transaction(
+      id: 't2',
+      title: 'New shoes',
+      amount: 69.99,
+      dateTime: DateTime.now(),
+    ),
+    Transaction(
+      id: 't3',
+      title: 'LIDL - weekly groceries',
+      amount: 130.59,
+      dateTime: DateTime.now(),
+    ),
+  ];
 
-  void _reduceBalance(double amount) {
+  void _addNewTransaction(String transactionTitle, double transactionAmount) {
+    final newTransaction = Transaction(
+      id: DateTime.now().toString(),
+      title: transactionTitle,
+      amount: transactionAmount,
+      dateTime: DateTime.now(),
+    );
+
     setState(() {
-      _accountBalance -= amount;
+      _userTransactions.add(newTransaction);
+      _accountBalance -= transactionAmount;
     });
   }
 
@@ -68,7 +98,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               ],
             ),
-            UserTransactions(_reduceBalance),
+            NewTransaction(_addNewTransaction),
+            TransactionList(_userTransactions),
           ],
         ),
       ),
