@@ -27,6 +27,9 @@ class TransactionList extends StatelessWidget {
                       color: Theme.of(context).primaryColor,
                       width: 2,
                     ),
+                    borderRadius: BorderRadius.all(
+                      Radius.circular(4),
+                    ),
                   ),
                   padding: EdgeInsets.all(10),
                   child: Text(

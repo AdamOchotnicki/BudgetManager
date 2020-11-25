@@ -21,7 +21,10 @@ class AccountBalance extends StatelessWidget {
             decoration: BoxDecoration(
               border: Border.all(
                 color: Theme.of(context).primaryColor,
-                width: 2,
+                width: 3,
+              ),
+              borderRadius: BorderRadius.all(
+                Radius.circular(5),
               ),
             ),
             padding: EdgeInsets.all(10),
