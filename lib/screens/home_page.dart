@@ -4,8 +4,10 @@ import '../models/transaction.dart';
 import '../widgets/new_transaction.dart';
 import '../widgets/account_balance.dart';
 import '../widgets/transaction_list.dart';
+import '../screens/add_transaction_screen.dart';
 
 class HomePage extends StatefulWidget {
+  static const routeName = '/home-page';
   final String title;
 
   HomePage({Key key, this.title}) : super(key: key);
@@ -94,7 +96,10 @@ class _HomePageState extends State<HomePage> {
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),
-        onPressed: () => _startAddingNewTransaction(context),
+        //onPressed: () => _startAddingNewTransaction(context),
+        onPressed: () {
+          Navigator.of(context).pushNamed(AddTransactionScreen.routeName);
+        },
       ),
     );
   }
