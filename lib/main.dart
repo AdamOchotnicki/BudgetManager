@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import './models/transaction.dart';
 import './widgets/transaction_list.dart';
 import './widgets/new_transaction.dart';
+import './widgets/account_balance.dart';
 
 void main() => runApp(MyApp());
 
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Budget Manager',
       theme: ThemeData(
-        primarySwatch: Colors.blue,
+        primarySwatch: Colors.indigo,
+        accentColor: Colors.amber,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: MyHomePage(title: 'Budget manager'),
@@ -89,21 +91,16 @@ class _MyHomePageState extends State<MyHomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
+                AccountBalance(_accountBalance),
                 Card(
                   elevation: 5,
-                  color: Colors.red,
+                  color: Theme.of(context).primaryColor,
                   child: Text(
-                    '€$_accountBalance',
+                    'WEEKLY CHART!',
                     style: TextStyle(
-                      fontWeight: FontWeight.bold,
-                      fontSize: 20,
+                      color: Theme.of(context).accentColor,
                     ),
                   ),
-                ),
-                Card(
-                  elevation: 5,
-                  color: Colors.blue,
-                  child: Text('WEEKLY CHART!'),
                 ),
               ],
             ),
