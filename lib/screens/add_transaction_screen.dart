@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 
+import '../widgets/image_input.dart';
+
 class AddTransactionScreen extends StatefulWidget {
   static const routeName = '/add-transaction';
 
@@ -32,14 +34,16 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       controller: _titleController,
                     ),
                     SizedBox(height: 10),
-                    Container(),
+                    ImageInput(),
                     SizedBox(height: 10),
                     Card(
                       elevation: 5,
                       color: Theme.of(context).primaryColor,
                       child: Text(
                         'Recognized text here!',
-                        style: TextStyle(color: Theme.of(context).accentColor),
+                        style: TextStyle(
+                          color: Theme.of(context).accentColor,
+                        ),
                       ),
                     ),
                   ],
@@ -52,13 +56,13 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
             children: [
               RaisedButton.icon(
                 onPressed: () {},
-                icon: Icon(Icons.camera),
-                label: Text('Take a picture'),
+                icon: Icon(Icons.add_circle),
+                label: Text('Add this transaction'),
                 color: Theme.of(context).accentColor,
               ),
               RaisedButton.icon(
                 onPressed: () {},
-                icon: Icon(Icons.add),
+                icon: Icon(Icons.add_comment),
                 label: Text('Add manually'),
                 color: Theme.of(context).accentColor,
               ),
