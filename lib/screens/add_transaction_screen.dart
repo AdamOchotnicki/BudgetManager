@@ -1,3 +1,4 @@
+import 'dart:io';
 import 'package:flutter/material.dart';
 
 import '../widgets/image_input.dart';
@@ -11,6 +12,18 @@ class AddTransactionScreen extends StatefulWidget {
 
 class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final _titleController = TextEditingController();
+  File _pickedImage;
+
+  void _selectImage(File pickedImage) {
+    _pickedImage = pickedImage;
+  }
+
+  void _saveImage() {
+    if (_titleController.text.isEmpty || _pickedImage == null) {
+      // show dialog
+      return;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,7 +47,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       controller: _titleController,
                     ),
                     SizedBox(height: 10),
-                    ImageInput(),
+                    ImageInput(_selectImage),
                     SizedBox(height: 10),
                     Card(
                       elevation: 5,
