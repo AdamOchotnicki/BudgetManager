@@ -1,5 +1,6 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:firebase_ml_vision/firebase_ml_vision.dart';
 
 import '../widgets/image_input.dart';
 
@@ -16,6 +17,58 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
+    _extractText(_pickedImage);
+  }
+
+  void _extractText(File image) async {
+    // create FirebaseVisionImage
+    final FirebaseVisionImage visionImage = FirebaseVisionImage.fromFile(image);
+
+    // create an instance of a detector
+    final TextRecognizer textRecognizer = FirebaseVision.instance.textRecognizer();
+    //final TextRecognizer cloudTextRecognizer = FirebaseVision.instance.cloudTextRecognizer();
+
+    // call detectInImage() or processImage() with visionImage
+    final VisionText visionText = await textRecognizer.processImage(visionImage);
+    //final VisionText visionText = await cloudTextRecognizer.processImage(visionImage);
+
+    print(visionText.text);
+
+    // extract data
+    // text
+    // String text = visionText.text;
+    // for (TextBlock block in visionText.blocks) {
+    //   final Rect boundingBox = block.boundingBox;
+    //   final List<Offset> cornerPoints = block.cornerPoints;
+    //   final String text = block.text;
+    //   final List<RecognizedLanguage> languages = block.recognizedLanguages;
+
+    //   for (TextLine line in block.lines) {
+    //     // Same getters as TextBlock
+    //     for (TextElement element in line.elements) {
+    //       // Same getters as TextBlock
+    //     }
+    //   }
+    // }
+
+    // document text
+    // String text = visionDocumentText.text;
+    // for (DocumentTextBlock block in visionDocumentText.blocks) {
+    //   final Rect boundingBox = block.boundingBox;
+    //   final String text = block.text;
+    //   final List<RecognizedLanguage> languages = block.recognizedLanguages;
+    //   final DocumentTextRecognizedBreak = block.recognizedBreak;
+
+    //   for (DocumentTextParagraph paragraph in block.paragraphs) {
+    //     // Same getters as DocumentTextBlock
+    //     for (DocumentTextWord word in paragraph.words) {
+    //       // Same getters as DocumentTextBlock
+    //       for (DocumentTextSymbol symbol in word.symbols) {
+    //         // Same getters as DocumentTextBlock
+    //       }
+    //     }
+    //   }
+    // }
   }
 
   void _saveImage() {
