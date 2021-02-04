@@ -14,6 +14,7 @@ class AddTransactionScreen extends StatefulWidget {
 class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final _titleController = TextEditingController();
   File _pickedImage;
+  String _recognizedText;
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
@@ -25,14 +26,19 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     final FirebaseVisionImage visionImage = FirebaseVisionImage.fromFile(image);
 
     // create an instance of a detector
-    final TextRecognizer textRecognizer = FirebaseVision.instance.textRecognizer();
+    final TextRecognizer textRecognizer =
+        FirebaseVision.instance.textRecognizer();
     //final TextRecognizer cloudTextRecognizer = FirebaseVision.instance.cloudTextRecognizer();
 
     // call detectInImage() or processImage() with visionImage
-    final VisionText visionText = await textRecognizer.processImage(visionImage);
+    final VisionText visionText =
+        await textRecognizer.processImage(visionImage);
     //final VisionText visionText = await cloudTextRecognizer.processImage(visionImage);
 
     print(visionText.text);
+    setState(() {
+      _recognizedText = visionText.text;
+    });
 
     // extract data
     // text
@@ -105,10 +111,15 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                     Card(
                       elevation: 5,
                       color: Theme.of(context).primaryColor,
-                      child: Text(
-                        'Recognized text here!',
-                        style: TextStyle(
-                          color: Theme.of(context).accentColor,
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          _recognizedText == null
+                              ? 'Recognized text here!'
+                              : _recognizedText,
+                          style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                          ),
                         ),
                       ),
                     ),
