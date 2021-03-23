@@ -143,6 +143,24 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 label: Text('Add manually'),
                 color: Theme.of(context).accentColor,
               ),
+              // ElevatedButton.icon(
+              //   onPressed: () {},
+              //   icon: Icon(Icons.add_circle),
+              //   label: Text('Add this transaction'),
+              //   style: ElevatedButton.styleFrom(
+              //     primary: Theme.of(context).accentColor,
+              //     onPrimary: Colors.black,
+              //   ),
+              // ),
+              // ElevatedButton.icon(
+              //   onPressed: () {},
+              //   icon: Icon(Icons.add_comment),
+              //   label: Text('Add manually'),
+              //   style: ElevatedButton.styleFrom(
+              //     primary: Theme.of(context).accentColor,
+              //     onPrimary: Colors.black,
+              //   ),
+              // ),
             ],
           ),
         ],
