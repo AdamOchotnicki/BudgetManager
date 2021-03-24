@@ -10,8 +10,8 @@ void main() => runApp(MyApp());
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider.value(
-      value: UserTransactions(),
+    return ChangeNotifierProvider(
+      create: (ctx) => UserTransactions(),
       child: MaterialApp(
         title: 'Budget Manager',
         theme: ThemeData(
