@@ -17,27 +17,27 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  double _accountBalance = 567.34;
-  final List<Transaction> _userTransactions = [
-    Transaction(
-      id: 't1',
-      title: 'SV - daily groceries',
-      amount: 17.57,
-      dateTime: DateTime.now(),
-    ),
-    Transaction(
-      id: 't2',
-      title: 'New shoes',
-      amount: 69.99,
-      dateTime: DateTime.now(),
-    ),
-    Transaction(
-      id: 't3',
-      title: 'LIDL - weekly groceries',
-      amount: 130.59,
-      dateTime: DateTime.now(),
-    ),
-  ];
+  // double _accountBalance = 567.34;
+  // final List<Transaction> _userTransactions = [
+  //   Transaction(
+  //     id: 't1',
+  //     title: 'SV - daily groceries',
+  //     amount: 17.57,
+  //     dateTime: DateTime.now(),
+  //   ),
+  //   Transaction(
+  //     id: 't2',
+  //     title: 'New shoes',
+  //     amount: 69.99,
+  //     dateTime: DateTime.now(),
+  //   ),
+  //   Transaction(
+  //     id: 't3',
+  //     title: 'LIDL - weekly groceries',
+  //     amount: 130.59,
+  //     dateTime: DateTime.now(),
+  //   ),
+  // ];
 
   void _addNewTransaction(String transactionTitle, double transactionAmount) {
     final newTransaction = Transaction(
@@ -47,10 +47,10 @@ class _HomePageState extends State<HomePage> {
       dateTime: DateTime.now(),
     );
 
-    setState(() {
-      _userTransactions.add(newTransaction);
-      _accountBalance -= transactionAmount;
-    });
+    // setState(() {
+    //   _userTransactions.add(newTransaction);
+    //   _accountBalance -= transactionAmount;
+    // });
   }
 
   void _startAddingNewTransaction(BuildContext ctx) {
@@ -75,7 +75,8 @@ class _HomePageState extends State<HomePage> {
             Column(
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
-                AccountBalance(_accountBalance),
+                //AccountBalance(_accountBalance),
+                AccountBalance(),
                 Card(
                   elevation: 5,
                   color: Theme.of(context).primaryColor,
@@ -89,7 +90,8 @@ class _HomePageState extends State<HomePage> {
               ],
             ),
             //NewTransaction(_addNewTransaction),
-            TransactionList(_userTransactions),
+            //TransactionList(_userTransactions),
+            TransactionList(),
           ],
         ),
       ),

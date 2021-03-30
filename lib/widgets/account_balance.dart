@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:provider/provider.dart';
+
+import '../providers/user_transactions.dart';
 
 class AccountBalance extends StatelessWidget {
-  final double accountBalance;
+  // final double balance;
 
-  AccountBalance(this.accountBalance);
+  // AccountBalance(this.balance);
 
   @override
   Widget build(BuildContext context) {
+    final transactionsData = Provider.of<UserTransactions>(context);
+    final balance = transactionsData.accountBalance;
     return Card(
       elevation: 5,
       color: Theme.of(context).accentColor,
@@ -29,7 +34,7 @@ class AccountBalance extends StatelessWidget {
             ),
             padding: EdgeInsets.all(10),
             child: Text(
-              '€${accountBalance.toStringAsFixed(2)}',
+              '€${balance.toStringAsFixed(2)}',
               style: TextStyle(
                 fontWeight: FontWeight.bold,
                 fontSize: 20,
