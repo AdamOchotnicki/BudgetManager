@@ -13,6 +13,7 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (ctx) => UserTransactions(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: true,
         title: 'Budget Manager',
         theme: ThemeData(
           primarySwatch: Colors.indigo,
