@@ -62,6 +62,55 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  // string processing test
+  String testString =
+      '    7 38 89 fn su dwTT LL857 b U   Total :   125.56 d9m,d-;oas88d      ';
+  String newString;
+
+  String processString(String input) {
+    String output;
+    String proc;
+    bool sentinel = true; // run loop while sentinel is true
+
+    // void _extractValue() {
+    //   index
+    //   proc.
+    // }
+
+    proc = input.replaceAll(' ', '').toLowerCase();
+    print(proc);
+
+    do {
+      int index;
+      String procToWork;
+      print(procToWork);
+
+      if (procToWork == null) {
+        procToWork = proc;
+      }
+
+      index = procToWork.indexOf('total:');
+      print(index);
+
+      if (index == -1) {
+        sentinel = false;
+        output = 'No value recognized';
+      } else {
+        index += 6;
+        procToWork = procToWork.substring(index);
+        String temp = procToWork.substring(0, (procToWork.indexOf('.') + 3));
+
+        try {
+          double value = double.parse(temp);
+          output = value.toString();
+          sentinel = false;
+        } catch (e) {}
+      }
+    } while (sentinel);
+
+    return output;
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -101,6 +150,8 @@ class _HomePageState extends State<HomePage> {
         //onPressed: () => _startAddingNewTransaction(context),
         onPressed: () {
           Navigator.of(context).pushNamed(AddTransactionScreen.routeName);
+          // newString = processString(testString);
+          // print(newString);
         },
       ),
     );
