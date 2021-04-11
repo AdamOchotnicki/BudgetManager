@@ -15,6 +15,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
   final _titleController = TextEditingController();
   File _pickedImage;
   String _recognizedText;
+  String _extractedTotalValue;
 
   void _selectImage(File pickedImage) {
     _pickedImage = pickedImage;
@@ -38,6 +39,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     print(visionText.text);
     setState(() {
       _recognizedText = visionText.text;
+      _extractedTotalValue = _extractTotalValue(_recognizedText);
     });
 
     // extract data
@@ -75,6 +77,48 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     //     }
     //   }
     // }
+  }
+
+  String _extractTotalValue(String input) {
+    String extractedValue = null;
+    String proc = null;
+    bool sentinel = true; // run loop while sentinel is true
+
+    proc = input.replaceAll(' ', '').toLowerCase();
+    print(proc);
+
+    //do {
+    int index;
+    String procToWork;
+    print(procToWork);
+
+    if (procToWork == null) {
+      procToWork = proc;
+    }
+
+    index = procToWork.indexOf('total:');
+    print(index);
+
+    if (index == -1) {
+      sentinel = false;
+      extractedValue = 'No value recognized';
+    } else {
+      index += 6;
+      procToWork = procToWork.substring(index);
+      //String temp = procToWork.substring(0, (procToWork.indexOf('.') + 3));
+      String temp = procToWork.replaceAll('e', '');
+      temp = temp.replaceAll('€', '');
+      temp = temp.substring(0, (procToWork.indexOf('.') + 3));
+
+      try {
+        double value = double.parse(temp);
+        extractedValue = value.toString();
+        sentinel = false;
+      } catch (e) {}
+    }
+    //} while (sentinel);
+
+    return extractedValue;
   }
 
   void _saveImage() {
@@ -117,6 +161,22 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                           _recognizedText == null
                               ? 'Recognized text here!'
                               : _recognizedText,
+                          style: TextStyle(
+                            color: Theme.of(context).accentColor,
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 10),
+                    Card(
+                      elevation: 5,
+                      color: Theme.of(context).primaryColor,
+                      child: Container(
+                        padding: EdgeInsets.all(10),
+                        child: Text(
+                          _extractedTotalValue == null
+                              ? 'Recognized value here!'
+                              : _extractedTotalValue,
                           style: TextStyle(
                             color: Theme.of(context).accentColor,
                           ),
