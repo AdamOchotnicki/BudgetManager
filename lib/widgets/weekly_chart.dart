@@ -21,11 +21,11 @@ class WeeklyChart extends StatelessWidget {
         }
       }
 
-      print(DateFormat.E(weekDay));
-      print(dailyTotal);
+      // print(DateFormat.E(weekDay));
+      // print(dailyTotal);
 
       return {
-        'day': DateFormat.E(weekDay),
+        'day': DateFormat.E().format(weekDay).substring(0, 1),
         'amount': dailyTotal,
       };
     });
@@ -33,11 +33,16 @@ class WeeklyChart extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    print(dailyTransactions);
     return Card(
       elevation: 6,
       margin: EdgeInsets.all(20),
       child: Row(
-        children: [],
+        children: dailyTransactions.map((transactionsData) {
+          return Text(
+            '${transactionsData['day']}: ${transactionsData['amount']}',
+          );
+        }).toList(),
       ),
     );
   }
