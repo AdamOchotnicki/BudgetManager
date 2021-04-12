@@ -5,6 +5,7 @@ import '../widgets/new_transaction.dart';
 import '../widgets/account_balance.dart';
 import '../widgets/transaction_list.dart';
 import '../screens/add_transaction_screen.dart';
+import '../widgets/weekly_chart.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home-page';
@@ -17,28 +18,6 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  // double _accountBalance = 567.34;
-  // final List<Transaction> _userTransactions = [
-  //   Transaction(
-  //     id: 't1',
-  //     title: 'SV - daily groceries',
-  //     amount: 17.57,
-  //     dateTime: DateTime.now(),
-  //   ),
-  //   Transaction(
-  //     id: 't2',
-  //     title: 'New shoes',
-  //     amount: 69.99,
-  //     dateTime: DateTime.now(),
-  //   ),
-  //   Transaction(
-  //     id: 't3',
-  //     title: 'LIDL - weekly groceries',
-  //     amount: 130.59,
-  //     dateTime: DateTime.now(),
-  //   ),
-  // ];
-
   void _addNewTransaction(String transactionTitle, double transactionAmount) {
     final newTransaction = Transaction(
       id: DateTime.now().toString(),
@@ -62,54 +41,54 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
-  // string processing test
-  String testString =
-      '    7 38 89 fn su dwTT LL857 b U   Total :   125.56 d9m,d-;oas88d      ';
-  String newString;
+  // // string processing test
+  // String testString =
+  //     '    7 38 89 fn su dwTT LL857 b U   Total :   125.56 d9m,d-;oas88d      ';
+  // String newString;
 
-  String processString(String input) {
-    String output;
-    String proc;
-    bool sentinel = true; // run loop while sentinel is true
+  // String processString(String input) {
+  //   String output;
+  //   String proc;
+  //   bool sentinel = true; // run loop while sentinel is true
 
-    // void _extractValue() {
-    //   index
-    //   proc.
-    // }
+  //   // void _extractValue() {
+  //   //   index
+  //   //   proc.
+  //   // }
 
-    proc = input.replaceAll(' ', '').toLowerCase();
-    print(proc);
+  //   proc = input.replaceAll(' ', '').toLowerCase();
+  //   print(proc);
 
-    do {
-      int index;
-      String procToWork;
-      print(procToWork);
+  //   do {
+  //     int index;
+  //     String procToWork;
+  //     print(procToWork);
 
-      if (procToWork == null) {
-        procToWork = proc;
-      }
+  //     if (procToWork == null) {
+  //       procToWork = proc;
+  //     }
 
-      index = procToWork.indexOf('total:');
-      print(index);
+  //     index = procToWork.indexOf('total:');
+  //     print(index);
 
-      if (index == -1) {
-        sentinel = false;
-        output = 'No value recognized';
-      } else {
-        index += 6;
-        procToWork = procToWork.substring(index);
-        String temp = procToWork.substring(0, (procToWork.indexOf('.') + 3));
+  //     if (index == -1) {
+  //       sentinel = false;
+  //       output = 'No value recognized';
+  //     } else {
+  //       index += 6;
+  //       procToWork = procToWork.substring(index);
+  //       String temp = procToWork.substring(0, (procToWork.indexOf('.') + 3));
 
-        try {
-          double value = double.parse(temp);
-          output = value.toString();
-          sentinel = false;
-        } catch (e) {}
-      }
-    } while (sentinel);
+  //       try {
+  //         double value = double.parse(temp);
+  //         output = value.toString();
+  //         sentinel = false;
+  //       } catch (e) {}
+  //     }
+  //   } while (sentinel);
 
-    return output;
-  }
+  //   return output;
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -126,16 +105,17 @@ class _HomePageState extends State<HomePage> {
               children: [
                 //AccountBalance(_accountBalance),
                 AccountBalance(),
-                Card(
-                  elevation: 5,
-                  color: Theme.of(context).primaryColor,
-                  child: Text(
-                    'WEEKLY CHART!',
-                    style: TextStyle(
-                      color: Theme.of(context).accentColor,
-                    ),
-                  ),
-                ),
+                // Card(
+                //   elevation: 5,
+                //   color: Theme.of(context).primaryColor,
+                //   child: Text(
+                //     'WEEKLY CHART!',
+                //     style: TextStyle(
+                //       color: Theme.of(context).accentColor,
+                //     ),
+                //   ),
+                // ),
+                WeeklyChart(),
               ],
             ),
             //NewTransaction(_addNewTransaction),

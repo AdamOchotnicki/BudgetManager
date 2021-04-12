@@ -1,4 +1,5 @@
 import 'package:flutter/foundation.dart';
+import 'package:intl/intl.dart';
 
 import '../models/transaction.dart';
 
@@ -31,6 +32,40 @@ class UserTransactions with ChangeNotifier {
 
   List<Transaction> get userTransactions {
     return [..._userTransactions];
+  }
+
+  List<Transaction> get _recentTransactions {
+    return _userTransactions.where((transaction) {
+      return transaction.dateTime.isAfter(
+        DateTime.now().subtract(
+          Duration(days: 7),
+        ),
+      );
+    }).toList();
+  }
+
+  List<Map<String, Object>> get dailyTransactions {
+    return List.generate(7, (index) {
+      final weekDay = DateTime.now().subtract(Duration(days: index));
+      double dailyTotal = 0.0;
+
+      for (var transaction in _recentTransactions) {
+        if (transaction.dateTime.day == weekDay.day &&
+            transaction.dateTime.month == weekDay.month &&
+            transaction.dateTime.year == weekDay.year) {
+          dailyTotal += transaction.amount;
+        }
+      }
+
+      // print(DateFormat.E(weekDay));
+      // print(dailyTotal);
+
+      return {
+        //'day': DateFormat.E().format(weekDay).substring(0, 1),
+        'day': DateFormat.E().format(weekDay),
+        'amount': dailyTotal,
+      };
+    });
   }
 
   void updateBalance(double transactionAmount) {

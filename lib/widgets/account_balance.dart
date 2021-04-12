@@ -5,10 +5,6 @@ import 'package:provider/provider.dart';
 import '../providers/user_transactions.dart';
 
 class AccountBalance extends StatelessWidget {
-  // final double balance;
-
-  // AccountBalance(this.balance);
-
   @override
   Widget build(BuildContext context) {
     final transactionsData = Provider.of<UserTransactions>(context);
