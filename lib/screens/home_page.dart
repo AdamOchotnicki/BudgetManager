@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../models/transaction.dart';
 import '../widgets/new_transaction.dart';
@@ -6,6 +7,7 @@ import '../widgets/account_balance.dart';
 import '../widgets/transaction_list.dart';
 import '../screens/add_transaction_screen.dart';
 import '../widgets/weekly_chart.dart';
+import '../providers/user_transactions.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home-page';
@@ -92,6 +94,8 @@ class _HomePageState extends State<HomePage> {
 
   @override
   Widget build(BuildContext context) {
+    final transactionsData = Provider.of<UserTransactions>(context);
+    final transactions = transactionsData.userTransactions;
     return Scaffold(
       appBar: AppBar(
         title: Text(widget.title),
@@ -120,7 +124,7 @@ class _HomePageState extends State<HomePage> {
             ),
             //NewTransaction(_addNewTransaction),
             //TransactionList(_userTransactions),
-            TransactionList(),
+            TransactionList(transactions),
           ],
         ),
       ),

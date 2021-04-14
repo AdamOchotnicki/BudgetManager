@@ -1,19 +1,19 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:provider/provider.dart';
+//import 'package:provider/provider.dart';
 
-//import '../models/transaction.dart';
-import '../providers/user_transactions.dart';
+import '../models/transaction.dart';
+//import '../providers/user_transactions.dart';
 
 class TransactionList extends StatelessWidget {
-  // final List<Transaction> transactions;
+  final List<Transaction> transactions;
 
-  // TransactionList(this.transactions);
+  TransactionList(this.transactions);
 
   @override
   Widget build(BuildContext context) {
-    final transactionsData = Provider.of<UserTransactions>(context);
-    final transactions = transactionsData.userTransactions;
+    // final transactionsData = Provider.of<UserTransactions>(context);
+    // final transactions = transactionsData.userTransactions;
     return Container(
       height: 500,
       child: ListView.builder(

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/user_transactions.dart';
-import 'chart_bar.dart';
+import './chart_bar.dart';
 
 class WeeklyChart extends StatelessWidget {
   @override

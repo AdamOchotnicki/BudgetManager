@@ -55,7 +55,7 @@ class UserTransactions with ChangeNotifier {
     }).toList();
   }
 
-  // sum of transactions each day from _recentTransactions
+  // sum of transactions each day from _recentTransactions (last seven days)
   List<Map<String, Object>> get dailyTransactions {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(Duration(days: index));
@@ -68,9 +68,6 @@ class UserTransactions with ChangeNotifier {
           dailyTotal += transaction.amount;
         }
       }
-
-      // print(DateFormat.E(weekDay));
-      // print(dailyTotal);
 
       return {
         //'day': DateFormat.E().format(weekDay).substring(0, 1),
