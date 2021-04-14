@@ -1,8 +1,11 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:firebase_ml_vision/firebase_ml_vision.dart';
+//import 'package:provider/provider.dart';
 
 import '../widgets/image_input.dart';
+import '../widgets/new_transaction.dart';
+//import '../providers/user_transactions.dart';
 
 class AddTransactionScreen extends StatefulWidget {
   static const routeName = '/add-transaction';
@@ -27,13 +30,11 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     final FirebaseVisionImage visionImage = FirebaseVisionImage.fromFile(image);
 
     // create an instance of a detector
-    final TextRecognizer textRecognizer =
-        FirebaseVision.instance.textRecognizer();
+    final TextRecognizer textRecognizer = FirebaseVision.instance.textRecognizer();
     //final TextRecognizer cloudTextRecognizer = FirebaseVision.instance.cloudTextRecognizer();
 
     // call detectInImage() or processImage() with visionImage
-    final VisionText visionText =
-        await textRecognizer.processImage(visionImage);
+    final VisionText visionText = await textRecognizer.processImage(visionImage);
     //final VisionText visionText = await cloudTextRecognizer.processImage(visionImage);
 
     print(visionText.text);
@@ -41,42 +42,6 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
       _recognizedText = visionText.text;
       _extractedTotalValue = _extractTotalValue(_recognizedText);
     });
-
-    // extract data
-    // text
-    // String text = visionText.text;
-    // for (TextBlock block in visionText.blocks) {
-    //   final Rect boundingBox = block.boundingBox;
-    //   final List<Offset> cornerPoints = block.cornerPoints;
-    //   final String text = block.text;
-    //   final List<RecognizedLanguage> languages = block.recognizedLanguages;
-
-    //   for (TextLine line in block.lines) {
-    //     // Same getters as TextBlock
-    //     for (TextElement element in line.elements) {
-    //       // Same getters as TextBlock
-    //     }
-    //   }
-    // }
-
-    // document text
-    // String text = visionDocumentText.text;
-    // for (DocumentTextBlock block in visionDocumentText.blocks) {
-    //   final Rect boundingBox = block.boundingBox;
-    //   final String text = block.text;
-    //   final List<RecognizedLanguage> languages = block.recognizedLanguages;
-    //   final DocumentTextRecognizedBreak = block.recognizedBreak;
-
-    //   for (DocumentTextParagraph paragraph in block.paragraphs) {
-    //     // Same getters as DocumentTextBlock
-    //     for (DocumentTextWord word in paragraph.words) {
-    //       // Same getters as DocumentTextBlock
-    //       for (DocumentTextSymbol symbol in word.symbols) {
-    //         // Same getters as DocumentTextBlock
-    //       }
-    //     }
-    //   }
-    // }
   }
 
   String _extractTotalValue(String input) {
@@ -121,6 +86,15 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
     return extractedValue;
   }
 
+  void _startAddingNewTransaction(BuildContext ctx) {
+    showModalBottomSheet(
+      context: ctx,
+      builder: (_) {
+        return NewTransaction();
+      },
+    );
+  }
+
   void _saveImage() {
     if (_titleController.text.isEmpty || _pickedImage == null) {
       // show dialog
@@ -158,9 +132,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       child: Container(
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          _recognizedText == null
-                              ? 'Recognized text here!'
-                              : _recognizedText,
+                          _recognizedText == null ? 'Recognized text here!' : _recognizedText,
                           style: TextStyle(
                             color: Theme.of(context).accentColor,
                           ),
@@ -174,9 +146,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                       child: Container(
                         padding: EdgeInsets.all(10),
                         child: Text(
-                          _extractedTotalValue == null
-                              ? 'Recognized value here!'
-                              : _extractedTotalValue,
+                          _extractedTotalValue == null ? 'Recognized value here!' : _extractedTotalValue,
                           style: TextStyle(
                             color: Theme.of(context).accentColor,
                           ),
@@ -198,7 +168,8 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
                 color: Theme.of(context).accentColor,
               ),
               RaisedButton.icon(
-                onPressed: () {},
+                //onPressed: () {},
+                onPressed: () => _startAddingNewTransaction(context),
                 icon: Icon(Icons.add_comment),
                 label: Text('Add manually'),
                 color: Theme.of(context).accentColor,

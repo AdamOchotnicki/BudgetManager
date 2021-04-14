@@ -21,28 +21,28 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-  void _addNewTransaction(String transactionTitle, double transactionAmount) {
-    final newTransaction = Transaction(
-      id: DateTime.now().toString(),
-      title: transactionTitle,
-      amount: transactionAmount,
-      dateTime: DateTime.now(),
-    );
+  // void _addNewTransaction(String transactionTitle, double transactionAmount) {
+  //   final newTransaction = Transaction(
+  //     id: DateTime.now().toString(),
+  //     title: transactionTitle,
+  //     amount: transactionAmount,
+  //     dateTime: DateTime.now(),
+  //   );
 
-    // setState(() {
-    //   _userTransactions.add(newTransaction);
-    //   _accountBalance -= transactionAmount;
-    // });
-  }
+  //   // setState(() {
+  //   //   _userTransactions.add(newTransaction);
+  //   //   _accountBalance -= transactionAmount;
+  //   // });
+  // }
 
-  void _startAddingNewTransaction(BuildContext ctx) {
-    showModalBottomSheet(
-      context: ctx,
-      builder: (_) {
-        return NewTransaction(_addNewTransaction);
-      },
-    );
-  }
+  // void _startAddingNewTransaction(BuildContext ctx) {
+  //   showModalBottomSheet(
+  //     context: ctx,
+  //     builder: (_) {
+  //       return NewTransaction(_addNewTransaction);
+  //     },
+  //   );
+  // }
 
   // // string processing test
   // String testString =

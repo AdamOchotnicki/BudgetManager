@@ -30,13 +30,26 @@ class UserTransactions with ChangeNotifier {
     return _accountBalance;
   }
 
-  void updateBalance(double transactionAmount) {
-    _accountBalance -= transactionAmount;
-  }
+  // void updateBalance(double transactionAmount) {
+  //   _accountBalance -= transactionAmount;
+  // }
 
-  void addTransaction(Transaction newTransaction) {
+  // void addTransaction(Transaction newTransaction) {
+  //   _userTransactions.add(newTransaction);
+  //   updateBalance(newTransaction.amount);
+  //   notifyListeners();
+  // }
+
+  void addTransaction(String transactionTitle, double transactionAmount) {
+    final newTransaction = Transaction(
+      id: DateTime.now().toString(),
+      title: transactionTitle,
+      amount: transactionAmount,
+      dateTime: DateTime.now(),
+    );
+
     _userTransactions.add(newTransaction);
-    updateBalance(newTransaction.amount);
+    _accountBalance -= transactionAmount;
     notifyListeners();
   }
 
