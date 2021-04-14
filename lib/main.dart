@@ -23,7 +23,7 @@ class MyApp extends StatelessWidget {
         ),
         home: HomePage(title: 'Budget manager'),
         routes: {
-          //HomePage.routeName: (ctx) => HomePage(title: 'Budget manager'),
+          HomePage.routeName: (ctx) => HomePage(title: 'Budget manager'),
           AddTransactionScreen.routeName: (ctx) => AddTransactionScreen(),
           DailyTransactionsScreen.routeName: (ctx) => DailyTransactionsScreen(),
         },

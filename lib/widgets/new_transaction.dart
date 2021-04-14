@@ -31,7 +31,7 @@ class _NewTransactionState extends State<NewTransaction> {
       }
 
       addTransaction(enteredTitle, enteredAmount);
-      Navigator.of(context).pop();
+      Navigator.of(context).popAndPushNamed(HomePage.routeName);
       //Navigator.of(context).pushNamed(HomePage.routeName);
     }
 
