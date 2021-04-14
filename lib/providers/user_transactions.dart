@@ -30,10 +30,21 @@ class UserTransactions with ChangeNotifier {
     return _accountBalance;
   }
 
+  void updateBalance(double transactionAmount) {
+    _accountBalance -= transactionAmount;
+  }
+
+  void addTransaction(Transaction newTransaction) {
+    _userTransactions.add(newTransaction);
+    updateBalance(newTransaction.amount);
+    notifyListeners();
+  }
+
   List<Transaction> get userTransactions {
     return [..._userTransactions];
   }
 
+  // transactions in the last seven days
   List<Transaction> get _recentTransactions {
     return _userTransactions.where((transaction) {
       return transaction.dateTime.isAfter(
@@ -44,6 +55,7 @@ class UserTransactions with ChangeNotifier {
     }).toList();
   }
 
+  // sum of transactions each day from _recentTransactions
   List<Map<String, Object>> get dailyTransactions {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(Duration(days: index));
@@ -68,13 +80,10 @@ class UserTransactions with ChangeNotifier {
     });
   }
 
-  void updateBalance(double transactionAmount) {
-    _accountBalance -= transactionAmount;
-  }
-
-  void addTransaction(Transaction newTransaction) {
-    _userTransactions.add(newTransaction);
-    updateBalance(newTransaction.amount);
-    notifyListeners();
+  // total expenses for the last week
+  double get lastWeekTotalExpenses {
+    return dailyTransactions.fold(0.0, (sum, item) {
+      return sum + item['amount'];
+    });
   }
 }
