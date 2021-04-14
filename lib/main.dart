@@ -1,3 +1,4 @@
+import 'package:budget_manager/screens/daily_transactions_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,6 +25,7 @@ class MyApp extends StatelessWidget {
         routes: {
           //HomePage.routeName: (ctx) => HomePage(title: 'Budget manager'),
           AddTransactionScreen.routeName: (ctx) => AddTransactionScreen(),
+          DailyTransactionsScreen.routeName: (ctx) => DailyTransactionsScreen(),
         },
       ),
     );

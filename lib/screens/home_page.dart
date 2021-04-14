@@ -5,9 +5,10 @@ import '../models/transaction.dart';
 import '../widgets/new_transaction.dart';
 import '../widgets/account_balance.dart';
 import '../widgets/transaction_list.dart';
-import '../screens/add_transaction_screen.dart';
+import './add_transaction_screen.dart';
 import '../widgets/weekly_chart.dart';
 import '../providers/user_transactions.dart';
+//import './daily_transactions_screen.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home-page';
@@ -100,33 +101,28 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Text(widget.title),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                //AccountBalance(_accountBalance),
-                AccountBalance(),
-                // Card(
-                //   elevation: 5,
-                //   color: Theme.of(context).primaryColor,
-                //   child: Text(
-                //     'WEEKLY CHART!',
-                //     style: TextStyle(
-                //       color: Theme.of(context).accentColor,
-                //     ),
-                //   ),
-                // ),
-                WeeklyChart(),
-              ],
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: [
+                      AccountBalance(),
+                      WeeklyChart(),
+                    ],
+                  ),
+                  //NewTransaction(_addNewTransaction),
+                  //TransactionList(_userTransactions),
+                  TransactionList(transactions),
+                ],
+              ),
             ),
-            //NewTransaction(_addNewTransaction),
-            //TransactionList(_userTransactions),
-            TransactionList(transactions),
-          ],
-        ),
+          ),
+        ],
       ),
       //floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: FloatingActionButton(
@@ -134,6 +130,7 @@ class _HomePageState extends State<HomePage> {
         //onPressed: () => _startAddingNewTransaction(context),
         onPressed: () {
           Navigator.of(context).pushNamed(AddTransactionScreen.routeName);
+          //Navigator.of(context).pushNamed(DailyTransactionsScreen.routeName);
           // newString = processString(testString);
           // print(newString);
         },

@@ -21,10 +21,14 @@ class DailyTransactionsScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text('Daily transactions'),
       ),
-      body: Expanded(
-        child: SingleChildScrollView(
-          child: TransactionList(transactions),
-        ),
+      body: Column(
+        children: [
+          Expanded(
+            child: SingleChildScrollView(
+              child: TransactionList(transactions),
+            ),
+          ),
+        ],
       ),
     );
   }
