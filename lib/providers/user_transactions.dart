@@ -55,17 +55,17 @@ class UserTransactions with ChangeNotifier {
     }).toList();
   }
 
-  // sum of transactions each day from _recentTransactions (last seven days)
+  // sum and list of transactions each day from _recentTransactions (last seven days)
   List<Map<String, Object>> get dailyTransactions {
     return List.generate(7, (index) {
       final weekDay = DateTime.now().subtract(Duration(days: index));
       double dailyTotal = 0.0;
+      List<Transaction> transactionsOnThatDay = [];
 
       for (var transaction in _recentTransactions) {
-        if (transaction.dateTime.day == weekDay.day &&
-            transaction.dateTime.month == weekDay.month &&
-            transaction.dateTime.year == weekDay.year) {
+        if (transaction.dateTime.day == weekDay.day && transaction.dateTime.month == weekDay.month && transaction.dateTime.year == weekDay.year) {
           dailyTotal += transaction.amount;
+          transactionsOnThatDay.add(transaction);
         }
       }
 
@@ -73,6 +73,7 @@ class UserTransactions with ChangeNotifier {
         //'day': DateFormat.E().format(weekDay).substring(0, 1),
         'day': DateFormat.E().format(weekDay),
         'amount': dailyTotal,
+        'transactions': transactionsOnThatDay,
       };
     });
   }
