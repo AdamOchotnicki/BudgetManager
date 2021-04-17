@@ -21,7 +21,8 @@ class MyApp extends StatelessWidget {
           accentColor: Colors.amber,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: HomePage(title: 'Budget manager'),
+        //home: HomePage(title: 'Budget manager'),
+        initialRoute: HomePage.routeName,
         routes: {
           HomePage.routeName: (ctx) => HomePage(title: 'Budget manager'),
           AddTransactionScreen.routeName: (ctx) => AddTransactionScreen(),

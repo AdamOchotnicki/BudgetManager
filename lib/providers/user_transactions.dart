@@ -88,7 +88,7 @@ class UserTransactions with ChangeNotifier {
         'amount': dailyTotal,
         'transactions': transactionsOnThatDay,
       };
-    });
+    }).reversed.toList();
   }
 
   // total expenses for the last week
