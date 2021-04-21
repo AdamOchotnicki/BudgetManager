@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../models/transaction.dart';
-import '../widgets/new_transaction.dart';
+//import '../models/transaction.dart';
+//import '../widgets/new_transaction.dart';
 import '../widgets/account_balance.dart';
 import '../widgets/transaction_list.dart';
 import './add_transaction_screen.dart';
