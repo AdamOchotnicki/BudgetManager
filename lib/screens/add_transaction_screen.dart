@@ -61,7 +61,7 @@ class _AddTransactionScreenState extends State<AddTransactionScreen> {
       procToWork = proc;
     }
 
-    index = procToWork.indexOf('total:');
+    index = procToWork.indexOf('eft');
     print(index);
 
     if (index == -1) {

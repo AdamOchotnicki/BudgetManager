@@ -12,9 +12,10 @@ class UserTransactions with ChangeNotifier {
     return _accountBalance;
   }
 
-  // void updateBalance(double transactionAmount) {
-  //   _accountBalance -= transactionAmount;
-  // }
+  void updateBalance(double transactionAmount) {
+    _accountBalance += transactionAmount;
+    notifyListeners();
+  }
 
   // void addTransaction(Transaction newTransaction) {
   //   _userTransactions.add(newTransaction);
